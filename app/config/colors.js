@@ -7,5 +7,8 @@ export default {
     warning: "#C17E00",
     error: "#F5405D",
     highlightBright: "#C4458C",
-    highlightSoft: "#7E5398"
+    highlightSoft: "#7E5398",
+    grayLight: "#f8f4f4",
+    grayMedium: "#6e6969",
+    dark: "#0c0c0c"
 }

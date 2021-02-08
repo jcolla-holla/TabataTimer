@@ -7,7 +7,7 @@ export default function AppText({children}) {
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 24,
-        fontFamily: Platform.OS === 'android' ? "Roboto" : "Arial"
+        fontSize: 18,
+        fontFamily: Platform.OS === 'android' ? "Roboto" : "Arial",
     }
 })
