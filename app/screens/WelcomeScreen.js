@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     loginButtonText: {
-        color: "white",
+        color: "black",
         fontWeight: "bold",
         fontSize: 26
     }
