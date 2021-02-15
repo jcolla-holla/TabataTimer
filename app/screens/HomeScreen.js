@@ -6,9 +6,14 @@ import AppTextInput from '../components/AppTextInput'
 export default function HomeScreen() {
     return (
         <View>
-            <Text>Home</Text>
             <AppTextInput
                 placeholder="Burpees"
+            ></AppTextInput>
+            <AppTextInput
+                placeholder="Squats"
+            ></AppTextInput>
+            <AppTextInput
+                placeholder="Lunges"
             ></AppTextInput>
         </View>
     )
