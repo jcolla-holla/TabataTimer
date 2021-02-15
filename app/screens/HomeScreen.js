@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { uid } from 'uid'
 
@@ -23,14 +23,14 @@ const exercises = [
 
 export default function HomeScreen() {
     const navigation = useNavigation()
-    const [exercise, setExercise] = useState()
     const [exerciseArr, setExerciseArr] = useState([])
-    const [numExercises, setNumExercises] = useState()
+    const [prepTime, setPrepTime] = useState()
+    const [numRounds, setNumRounds] = useState()
     const [roundDuration, setRoundDuration] = useState()
     const [breakDuration, setBreakDuration] = useState()
 
     const exerciseInputEles = []
-    for (let i = 0; i < numExercises; i++) {
+    for (let i = 0; i < numRounds; i++) {
         exerciseInputEles.push(<AppPicker id={uid()} selectedItem={exerciseArr[i]} onSelectItem={item => updateExercise(item, i)} items={exercises} icon="weight-lifter" placeholder={`Exercise ${i + 1}`} />)
     }
 
@@ -44,20 +44,31 @@ export default function HomeScreen() {
 
     return (
         <View>
-            <AppTextInput icon="timer-sand" placeholder={"Prep Time"} keyboardType='number-pad'/>
+            <View style={styles.navBar}>
+                <Image style={styles.logo} source={require("../assets/tt-logo.png")} />
+            </View>
+            <AppTextInput icon="timer-sand" placeholder={"Prep Time"} keyboardType='number-pad' onChangeText={(text) => setPrepTime(text)}/>
             <AppTextInput icon="timer" placeholder={"Round Duration"} keyboardType='number-pad' onChangeText={(text) => setRoundDuration(text)}/>
             <AppTextInput icon="timer" placeholder={"Break Duration"} keyboardType='number-pad' onChangeText={(text) => setBreakDuration(text)}/>
-            <AppTextInput icon="repeat" placeholder={"Rounds (number of exercises)"} keyboardType='number-pad' onChangeText={(text) => setNumExercises(text)}/>
+            <AppTextInput icon="repeat" placeholder={"Rounds (number of exercises)"} keyboardType='number-pad' onChangeText={(text) => setNumRounds(text)}/>
             {exerciseInputEles}
             <View style={styles.startTabataContainer}>
-                <AppButton disabled title="Start Tabata" onPress={() => navigation.navigate('Tabata')} />
+                <AppButton disabled title="Start Tabata" onPress={() => navigation.navigate('Tabata', {prepTime: prepTime, numRounds: numRounds, roundDuration: roundDuration, breakDuration: breakDuration, exerciseArr: exerciseArr})} />
             </View>
         </View>
     )
 }
 
-
 const styles = StyleSheet.create({
+    navBar: {
+        flex: 1,
+        alignItems: 'center',
+        top: 10
+    },
+    logo: {
+        width: 130,
+        height: 80,
+    },
     startTabataContainer: {
         // top: 420, to figure out this spacing so that user can scroll down to button with 8+ exercises
         marginTop: 300,
