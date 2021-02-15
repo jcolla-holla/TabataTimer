@@ -1,20 +1,21 @@
-import React, {useState} from 'react'
-import { View } from 'react-native';
+import React from 'react'
 import WelcomeScreen from './app/screens/WelcomeScreen'
 import HomeScreen from './app/screens/HomeScreen'
-import AppPicker from './app/components/AppPicker'
+import {createStackNavigator} from '@react-navigation/stack'
+import {NavigationContainer} from '@react-navigation/native'
 
-const exercises = [
-  {label: "Burpees", value: 1},
-  {label: "Squats", value: 2},
-  {label: "Push Ups", value: 3}
-]
+const Stack = createStackNavigator()
+const StackNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Welcome" component={WelcomeScreen}/>
+    <Stack.Screen name="Home" component={HomeScreen}/>
+  </Stack.Navigator>
+)
 
 export default function App() {
-  const [exercise, setExercise] = useState()
-
-
-  // return <HomeScreen />
-  return <AppPicker selectedItem={exercise} onSelectItem={item => setExercise(item)} items={exercises} icon="weight-lifter" placeholder="Exercise 1"></AppPicker>
-
+  return (
+    <NavigationContainer>
+      <StackNavigator/>
+    </NavigationContainer>
+  )
 }
