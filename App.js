@@ -9,8 +9,8 @@ import TabataScreen from './app/screens/TabataScreen'
 const Stack = createStackNavigator()
 const StackNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen name="Welcome" component={WelcomeScreen}/>
-    <Stack.Screen name="Home" component={HomeScreen}/>
+    <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}}/>
+    <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
     <Stack.Screen name="Tabata" component={TabataScreen}/>
   </Stack.Navigator>
 )
