@@ -48,7 +48,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         width: "100%",
         padding: 15,
-        marginVertical: 10
+        marginVertical: 10,
+        borderColor: colors.grayMedium,
+        borderTopWidth: 1,
+        borderBottomWidth: 1
     },
     icon: {
         marginRight: 10

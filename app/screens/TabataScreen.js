@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Text, StyleSheet, View, Image} from 'react-native'
+import { Text, StyleSheet, View, Image, ScrollView } from 'react-native'
 
 import Screen from '../components/Screen'
 
@@ -15,7 +15,7 @@ export default function Tabata({route}) {
             if(timeRemaining > 0)
                 setTimeout(() => {
                     setTimeRemaining(timeRemaining - 1)
-                }, 100)
+                }, 1000)
             else if (numExercisesCompleted === 0) {
                 setNumExercisesCompleted(numExercisesCompleted + 1)
                 setPhase("round")
@@ -47,37 +47,39 @@ export default function Tabata({route}) {
 
     return (
         <Screen>
-            <View style={styles.navBar}>
-                <Image style={styles.logo} source={require("../assets/tt-logo.png")} />
-            </View>
-            <View style={styles.timerContainer}>
-
-                {phase !== "end" && 
-                    <>
-                        <View style={styles.exercisesContainer}>
-                            <Text style={styles.text}>Exercises Done: {numExercisesCompleted} / {route.params.exerciseArr.length}</Text>
-                            <Text style={styles.text}>Rounds Done: {roundsCompleted} / {route.params.numRounds}</Text>
-                        </View>
-                        <Text style={styles.text}>Phase: {phase}</Text>
-                        <Text style={styles.text}>Exercise: {numExercisesCompleted === 0 ? route.params.exerciseArr[0] : route.params.exerciseArr[numExercisesCompleted - 1]}</Text>
-                        <Text style={styles.timer}>{timeRemaining}</Text>
-                    </>
-                }
-
-                {phase === "end" && <Text style={styles.done}>Done!</Text>}
-
-            </View>
-
-            <View style={styles.timesContainer}>
-                <View style={styles.timeTitleContainer}>
-                    <Text style={styles.timeTitle}>Times</Text>
+            <ScrollView>
+                <View style={styles.navBar}>
+                    <Image style={styles.logo} source={require("../assets/tt-logo.png")} />
                 </View>
-                <View style={styles.timesSetContainer}>
-                    <Text style={styles.text}>Prep: {route.params.prepTime}</Text>
-                    <Text style={styles.text}>Round: {route.params.roundDuration}</Text>
-                    <Text style={styles.text}>Break: {route.params.breakDuration}</Text>
+                <View style={styles.timerContainer}>
+
+                    {phase !== "end" && 
+                        <>
+                            <View style={styles.exercisesContainer}>
+                                <Text style={styles.text}>Exercises: {numExercisesCompleted} / {route.params.exerciseArr.length}</Text>
+                                <Text style={styles.text}>Rounds: {roundsCompleted} / {route.params.numRounds}</Text>
+                            </View>
+                            <Text style={styles.boldText}>{phase}</Text>
+                            <Text style={styles.boldText}>{numExercisesCompleted === 0 ? route.params.exerciseArr[0] : route.params.exerciseArr[numExercisesCompleted - 1]}</Text>
+                            <Text style={styles.timer}>{timeRemaining}</Text>
+                        </>
+                    }
+
+                    {phase === "end" && <Text style={styles.done}>Done!</Text>}
+
                 </View>
-            </View>
+
+                <View style={styles.timesContainer}>
+                    <View style={styles.timeTitleContainer}>
+                        <Text style={styles.timeTitle}>Times</Text>
+                    </View>
+                    <View style={styles.timesSetContainer}>
+                        <Text style={styles.text}>Prep: {route.params.prepTime}</Text>
+                        <Text style={styles.text}>Round: {route.params.roundDuration}</Text>
+                        <Text style={styles.text}>Break: {route.params.breakDuration}</Text>
+                    </View>
+                </View>
+            </ScrollView>
         </Screen>
     )
 }
@@ -139,5 +141,9 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20
+    },
+    boldText: {
+        fontSize: 22,
+        fontWeight: "bold"
     }
 })

@@ -50,6 +50,9 @@ export default function HomeScreen() {
                 <View style={styles.navBar}>
                     <Image style={styles.logo} source={require("../assets/tt-logo.png")} />
                 </View>
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>Fill out all fields to start your Tabata Timer.</Text>
+                </View>
                 <View style={{top: -80}}>
                     <AppTextInput icon="timer-sand" placeholder={"Prep Time"} keyboardType='number-pad' onChangeText={(text) => setPrepTime(text)}/>
                     <AppTextInput icon="timer" placeholder={"Round Duration"} keyboardType='number-pad' onChangeText={(text) => setRoundDuration(text)}/>
@@ -59,11 +62,6 @@ export default function HomeScreen() {
                     {exerciseInputEles}
                 </View>
                 <View style={styles.startTabataContainer}>
-                    {!(prepTime !== undefined && roundDuration !== undefined && breakDuration !== undefined && numRounds !== undefined && numSets !== undefined && exerciseArr.length > 0) && 
-                        <View>
-                            <Text style={styles.text}>Fill out all fields to start your Tabata Timer.</Text>
-                        </View>
-                    }
                     {(prepTime !== undefined && roundDuration !== undefined && breakDuration !== undefined && numRounds !== undefined && numSets !== undefined && exerciseArr.length > 0) && <AppButton title="Start Tabata" onPress={() => navigation.navigate('Tabata', {numSets: numSets, prepTime: prepTime, numRounds: numRounds, roundDuration: roundDuration, breakDuration: breakDuration, exerciseArr: exerciseArr})} />}
                 </View>
             </ScrollView>
@@ -82,17 +80,17 @@ const styles = StyleSheet.create({
         height: 80,
     },
     startTabataContainer: {
-        // top: 420, to figure out this spacing so that user can scroll down to button with 8+ exercises
         marginTop: 140,
         flex: 1,
         justifyContent: "flex-end",
         alignItems: "center"
     },
+    textContainer: {
+        flexDirection: "row",
+        justifyContent: "center"
+    },
     text: {
-        width: "100%", // this width might cause problems
-        height: 20,
-        bottom: 160,
-        justifyContent: "center",
-        alignItems: "center",
+        height: 40,
+        top: 40,
     }
 })
