@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import { Text, StyleSheet, View} from 'react-native'
+import { Text, StyleSheet, View, Image} from 'react-native'
 
 import Screen from '../components/Screen'
-import Constants from "expo-constants"
 
 export default function Tabata({route}) {
     const [timeRemaining, setTimeRemaining] = useState(route.params.prepTime)
@@ -47,16 +46,20 @@ export default function Tabata({route}) {
 
 
     return (
-        <View>
+        <Screen>
+            <View style={styles.navBar}>
+                <Image style={styles.logo} source={require("../assets/tt-logo.png")} />
+            </View>
             <View style={styles.timerContainer}>
 
-                <Text>Exercises Completed: {numExercisesCompleted}</Text>
-                <Text>Rounds Completed: {roundsCompleted}</Text>
-                
                 {phase !== "end" && 
                     <>
-                        <Text>Phase: {phase}</Text>
-                    <Text>Exercise: {numExercisesCompleted === 0 ? route.params.exerciseArr[0] : route.params.exerciseArr[numExercisesCompleted - 1]}</Text>
+                        <View style={styles.exercisesContainer}>
+                            <Text style={styles.text}>Exercises Done: {numExercisesCompleted} / {route.params.exerciseArr.length}</Text>
+                            <Text style={styles.text}>Rounds Done: {roundsCompleted} / {route.params.numRounds}</Text>
+                        </View>
+                        <Text style={styles.text}>Phase: {phase}</Text>
+                        <Text style={styles.text}>Exercise: {numExercisesCompleted === 0 ? route.params.exerciseArr[0] : route.params.exerciseArr[numExercisesCompleted - 1]}</Text>
                         <Text style={styles.timer}>{timeRemaining}</Text>
                     </>
                 }
@@ -64,36 +67,77 @@ export default function Tabata({route}) {
                 {phase === "end" && <Text style={styles.done}>Done!</Text>}
 
             </View>
-            <View style={styles.configContainer}>
-                <Text>Rounds: {route.params.numRounds}</Text>
-                <Text>Prep Time: {route.params.prepTime}</Text>
-                <Text>Round Duration: {route.params.roundDuration}</Text>
-                <Text>Break Duration: {route.params.breakDuration}</Text>
+
+            <View style={styles.timesContainer}>
+                <View style={styles.timeTitleContainer}>
+                    <Text style={styles.timeTitle}>Times</Text>
+                </View>
+                <View style={styles.timesSetContainer}>
+                    <Text style={styles.text}>Prep: {route.params.prepTime}</Text>
+                    <Text style={styles.text}>Round: {route.params.roundDuration}</Text>
+                    <Text style={styles.text}>Break: {route.params.breakDuration}</Text>
+                </View>
             </View>
-        </View>
+        </Screen>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingTop: Constants.statusBarHeight
+    navBar: {
+        alignItems: 'center',
+        top: 10
+    },
+    logo: {
+        width: 130,
+        height: 80,
+    },
+    timerContainer: {
+        alignItems: "center",
+        height: 300,
+        top: 20,
+        bottom: 20
+    },
+    exercisesContainer: {
+        alignItems: "center",
+        paddingTop: 20
     },
     timer: {
         fontSize: 200,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        bottom: 20,
+        top: 20
     },
     done: {
-        fontSize: 80,
+        fontSize: 100,
+        top: 40,
+        fontWeight: "bold",
+    },
+    timeTitleContainer: {
+        fontSize: 30,
+        fontWeight: "bold"
+    }, 
+    timeTitle: {
+        fontSize: 30,
+        fontWeight: "bold"
+    }, 
+    timesSetContainer: {
+        padding: 20
+    },
+    timesContainer: {
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: "center",
+        padding: 100
+    },
+    roundsContainer: {
+        alignItems: 'center',
+        padding: 60
+    },
+    roundsText: {
+        fontSize: 30,
         fontWeight: "bold"
     },
-    timerContainer: {
-        backgroundColor: "green",
-        alignItems: "center"
-    },
-    configContainer: {
-        backgroundColor: "dodgerblue",
-        display: "flex"
-        // justifyContent: "flex-end",
-        // alignItems: "center"
+    text: {
+        fontSize: 20
     }
 })

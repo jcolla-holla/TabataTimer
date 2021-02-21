@@ -11,7 +11,7 @@ function WelcomeScreen() {
 
     return (
         <ImageBackground 
-            blurRadius={2}
+            blurRadius={.5}
             style={styles.background}
             source={image}
         >
