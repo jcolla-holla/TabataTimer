@@ -46,16 +46,18 @@ export default function HomeScreen() {
 
     return (
         <Screen>
-            <ScrollView style={{ backgroundColor: 'pink'}}>
+            <ScrollView>
                 <View style={styles.navBar}>
                     <Image style={styles.logo} source={require("../assets/tt-logo.png")} />
                 </View>
-                <AppTextInput icon="timer-sand" placeholder={"Prep Time"} keyboardType='number-pad' onChangeText={(text) => setPrepTime(text)}/>
-                <AppTextInput icon="timer" placeholder={"Round Duration"} keyboardType='number-pad' onChangeText={(text) => setRoundDuration(text)}/>
-                <AppTextInput icon="timer" placeholder={"Break Duration"} keyboardType='number-pad' onChangeText={(text) => setBreakDuration(text)}/>
-                <AppTextInput icon="repeat" placeholder={"Number of Rounds"} keyboardType='number-pad' onChangeText={(text) => setNumRounds(text)}/>
-                <AppTextInput icon="format-list-numbered" placeholder={"Number of Sets"} keyboardType='number-pad' onChangeText={(text) => setNumSets(text)}/>
-                {exerciseInputEles}
+                <View style={{top: -80}}>
+                    <AppTextInput icon="timer-sand" placeholder={"Prep Time"} keyboardType='number-pad' onChangeText={(text) => setPrepTime(text)}/>
+                    <AppTextInput icon="timer" placeholder={"Round Duration"} keyboardType='number-pad' onChangeText={(text) => setRoundDuration(text)}/>
+                    <AppTextInput icon="timer" placeholder={"Break Duration"} keyboardType='number-pad' onChangeText={(text) => setBreakDuration(text)}/>
+                    <AppTextInput icon="repeat" placeholder={"Number of Rounds"} keyboardType='number-pad' onChangeText={(text) => setNumRounds(text)}/>
+                    <AppTextInput icon="format-list-numbered" placeholder={"Number of Sets"} keyboardType='number-pad' onChangeText={(text) => setNumSets(text)}/>
+                    {exerciseInputEles}
+                </View>
                 <View style={styles.startTabataContainer}>
                     {!(prepTime !== undefined && roundDuration !== undefined && breakDuration !== undefined && numRounds !== undefined && numSets !== undefined && exerciseArr.length > 0) && 
                         <View>
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
     },
     startTabataContainer: {
         // top: 420, to figure out this spacing so that user can scroll down to button with 8+ exercises
-        marginTop: 300,
+        marginTop: 140,
         flex: 1,
         justifyContent: "flex-end",
         alignItems: "center"
