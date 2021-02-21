@@ -4,9 +4,9 @@
     "slug": "TabataTimer",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icon.png",
+    "icon": "./app/assets/tt-logo-mobile-icon.png",
     "splash": {
-      "image": "./app/assets/splash.png",
+      "image": "./app/assets/tt-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -27,6 +27,19 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "bugsnag": {
+        "apiKey": "b4b8f86e02be8490e581c7a45c86805b"
+      }
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "@bugsnag/expo/hooks/post-publish.js",
+          "config": {}
+        }
+      ]
     }
   }
 }

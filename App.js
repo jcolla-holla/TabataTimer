@@ -5,6 +5,9 @@ import {NavigationContainer} from '@react-navigation/native'
 import WelcomeScreen from './app/screens/WelcomeScreen'
 import HomeScreen from './app/screens/HomeScreen'
 import TabataScreen from './app/screens/TabataScreen'
+import logger from "./app/utility/logger"
+
+logger.start()
 
 const Stack = createStackNavigator()
 const StackNavigator = () => (
