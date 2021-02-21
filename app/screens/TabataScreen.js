@@ -5,7 +5,7 @@ import Screen from '../components/Screen'
 
 export default function Tabata({route}) {
     const [timeRemaining, setTimeRemaining] = useState(route.params.prepTime)
-    const [phase, setPhase] = useState("prep")
+    const [phase, setPhase] = useState("Prep")
     const [numExercisesCompleted, setNumExercisesCompleted] = useState(0)
     const [roundsCompleted, setRoundsCompleted] = useState(0)
 
@@ -18,15 +18,15 @@ export default function Tabata({route}) {
                 }, 1000)
             else if (numExercisesCompleted === 0) {
                 setNumExercisesCompleted(numExercisesCompleted + 1)
-                setPhase("round")
+                setPhase("Round")
                 setTimeRemaining(route.params.roundDuration)
             }
-            else if (phase === "break") {
-                setPhase("round")
+            else if (phase === "Break") {
+                setPhase("Round")
                 setTimeRemaining(route.params.roundDuration)
-            } else if (phase === "round") {
+            } else if (phase === "Round") {
                 setNumExercisesCompleted(numExercisesCompleted + 1)
-                setPhase("break")
+                setPhase("Break")
                 setTimeRemaining(route.params.breakDuration)
             }
         } else if (roundsCompleted <= route.params.numRounds) {
@@ -37,7 +37,7 @@ export default function Tabata({route}) {
                 setRoundsCompleted(roundsCompleted + 1)
                 setNumExercisesCompleted(0)
                 setTimeRemaining(route.params.prepTime)
-                setPhase("prep")
+                setPhase("Prep")
             }
         } else {
             setPhase("end")
@@ -56,8 +56,8 @@ export default function Tabata({route}) {
                     {phase !== "end" && 
                         <>
                             <View style={styles.exercisesContainer}>
-                                <Text style={styles.text}>Exercises: {numExercisesCompleted} / {route.params.exerciseArr.length}</Text>
-                                <Text style={styles.text}>Rounds: {roundsCompleted} / {route.params.numRounds}</Text>
+                                <Text style={styles.headerText}>Exercises: {numExercisesCompleted} / {route.params.exerciseArr.length}</Text>
+                            <Text style={styles.headerText}>Rounds: {roundsCompleted} / {route.params.numRounds}</Text>
                             </View>
                             <Text style={styles.boldText}>{phase}</Text>
                             <Text style={styles.boldText}>{numExercisesCompleted === 0 ? route.params.exerciseArr[0] : route.params.exerciseArr[numExercisesCompleted - 1]}</Text>
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     },
     exercisesContainer: {
         alignItems: "center",
+        flexDirection: "row",
         paddingTop: 20
     },
     timer: {
@@ -143,7 +144,11 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     boldText: {
-        fontSize: 22,
+        fontSize: 28,
         fontWeight: "bold"
+    },
+    headerText: {
+        fontSize: 20,
+        padding: 10
     }
 })
