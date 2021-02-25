@@ -4,7 +4,8 @@
     "slug": "TabataTimer",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/tt-logo-mobile-icon.png",
+    "icon": "./app/assets/tt-logo-mobile-icon-2.png",
+    "privacy": "unlisted",
     "splash": {
       "image": "./app/assets/tt-logo.png",
       "resizeMode": "contain",
@@ -17,7 +18,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tabatatimes.timer",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
