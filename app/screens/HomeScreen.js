@@ -10,16 +10,29 @@ import Screen from '../components/Screen';
 
 // improvement: use a timer incrementer picker thing instead: https://www.npmjs.com/package/react-native-numeric-input
 
-
-// to do: update this with a list of real exercises in alphabetical order (better if searchable also)
 const exercises = [
-    "Burpees",
-    "Squats",
-    "Push Ups",
+    "Hand - Release Push Ups",
+    "Plyo Push Ups",
+    "Russian Twists",
+    "Single - Leg Burpees",
+    "Supermans with Lateral Raises",
+    "Lateral Lunges with Hops",
+    "Tuck - Ups",
+    "Mountain Climbers",
+    "Plank Jacks",
+    "Squat Thrusts",
+    "Plank Ups",
+    "Flutter Kicks",
+    "Star Jumps",
+    "Forearm Planks",
+    "Air Squats",
+    "Split Squat Jumps",
     "Jumping Jacks",
-    "Lunges",
-    "Plank",
-    "Pull Ups"
+    "Jump Lunge",
+    "Butt Kicks",
+    "Burpie Twister with Push Up",
+    "Side Plank",
+    "High Knees",
 ]
 
 export default function HomeScreen() {
