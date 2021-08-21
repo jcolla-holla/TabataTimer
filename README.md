@@ -5,15 +5,15 @@ This is a React Native mobile app built for a client. The concept is a branded T
 ### The requirements to implement were:
 
 User can enter:
-Initial Countdown (In seconds)
-Interval Inputs (In seconds)
-Exercise (Select)
-Rest (In Seconds)
-Number of Sets (In Seconds)
-Number of Rounds (In Seconds)
+- Initial Countdown (In seconds)
+- Interval Inputs (In seconds)
+- Exercise (Select)
+- Rest (In Seconds)
+- Number of Sets (In Seconds)
+- Number of Rounds (In Seconds)
 
-Tabata
-Show large number of rounds completed (ex: 1/10 )
+Tabata Timer Page
+- Show large number of rounds completed (ex: 1/10 )
 
 
 -------
